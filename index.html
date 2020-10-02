@@ -1,1 +1,58 @@
-Oh hi there!
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Accueil</title>
+    <link rel="stylesheet" href="Stylesheets/font-style.css" />
+    <link rel="stylesheet" href="Stylesheets/styleMain.css" />
+</head>
+
+<body  class="slimheader">
+    <div id="root">
+        <header class="home">
+            <h1>#Strasbourg by
+                <img class="inText" src="Images/logo-sii-silhouette.png" alt="SII"/>
+            </h1>
+            <div class="linkDiv right">
+                <a href="admin/Admin-connect.html">
+                    <img class="linkIcon lock" src="Images/Icons/admin.png" alt="Admin" />
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <div class="cardWelcome">
+                <p>
+                    Ce site a été créé pour faciliter vos recherches sur Strasbourg. <br />
+                    Il regroupe des données de l'Eurométrople de Strasbourg. <br />
+                </p>
+                <p>
+                    <img class="realTime" src="Images/Icons/realTime.png" alt="RealTime"/> Données "temps réel" : mise à jour
+                    possible toutes les 3 minutes.
+                </p>
+            </div>
+
+            <div id="container" class="home"></div>
+            <footer>
+                <p class="credit">Données Eurométropole de Strasbourg -
+                    <a href="https://data.strasbourg.eu/">
+                        Open Data Strasbourg.eu
+                    </a> -
+                    <a href="https://www.iconfinder.com/iconsets/ibrandify-basic-essentials-icon-set">
+                        Icônes
+                    </a>
+                </p>
+            </footer>
+        </main>
+
+    </div>
+    <script src="Scripts/config.js"></script>
+    <script src="Scripts/ajax.js"></script>
+    <script src="Scripts/catsouscat.js"></script>
+    <script src="Scripts/scriptAccueil.js"></script>
+
+</body>
+
+</html>

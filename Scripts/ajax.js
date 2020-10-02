@@ -1,7 +1,7 @@
 const container = document.getElementById('container');
 document.title = document.title + ' - ' + websiteName;
 var prePath;
-var demoMode;
+var demoMode = true;
 
 /**
  * Adds favicon to each page of the website.
@@ -65,7 +65,7 @@ function parseEcho(data, addDate = false) {
             displayDate(new Date());
         }
 
-    } else {
+/*     } else {
         const footer = document.getElementsByTagName('footer')[0];
         const visits = document.createElement('p');
         visits.textContent = ` - Page visitée ${data[2]} fois (dont ${data[4]} ce mois-ci).`;
@@ -73,7 +73,14 @@ function parseEcho(data, addDate = false) {
 
         if (addDate) {
             displayDate(new Date(data[5] * 1000));
-        }
+        } */
+
+    } else {
+        const footer = document.getElementsByTagName('footer')[0];
+        const modifs = document.createElement('p');
+        modifs.textContent = ` - Site modifié pour partage GitHub.`;
+        footer.appendChild(modifs);
+
     }
     prePath = data[1];
 }
