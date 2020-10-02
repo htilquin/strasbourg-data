@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vélo</title>
+  <link rel="stylesheet" href="Leaflet/leaflet.css"/>
+  <link rel="stylesheet" href="Leaflet/MarkerCluster.css" />
+  <link rel="stylesheet" href="Leaflet/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="Stylesheets/font-style.css" />
+  <link rel="stylesheet" href="Stylesheets/styleMain.css" />
+  <script src="Leaflet/leaflet.js"> </script>
+  <script src="Leaflet/leaflet.markercluster.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <header class="deplacements">
+      <h1>Voies cyclables et stations Vél'hop</h1>
+      <h2 id="upDate">&nbsp</h2>
+      <p id="ago">Traçage des lignes des voies en cours... Un peu de patience :)</p>
+      <p id="status"></p>
+    </header>
+
+    <main>
+      <div id="map" class="velhop"></div>
+
+      <div id="container"></div>
+    </main>
+
+  </div>
+
+  <script src="Scripts/config.js"></script>
+  <script src="Scripts/ajax.js"></script>
+  <script src="Scripts/scriptMaps.js"></script>
+  <script src="Scripts/catsouscat.js"></script>
+  <script src="Scripts/scriptSidenavFooter.js"></script>
+  <script src="Scripts/scriptVelo.js"></script>
+
+</body>
+
+</html>

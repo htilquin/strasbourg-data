@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Circuits sportifs</title>
+  <link rel="stylesheet" href="Leaflet/leaflet.css" />
+  <link rel="stylesheet" href="Stylesheets/font-style.css" />
+  <link rel="stylesheet" href="Stylesheets/styleMain.css" />
+  <script src="Leaflet/leaflet.js"> </script>
+</head>
+
+<body>
+  <div id="root">
+    <header class="sport">
+      <h1>Vitaboucles</h1>
+      <h2 id="upDate">&nbsp</h2>
+      <p id="ago">Les boucles sont en cours de chargement... Echauffez-vous ! :)</p>
+      <p id="status"></p>
+    </header>
+
+    <main>
+      <div class="cardWelcome">
+      <p>Les Vitaboucles sont des circuits sportifs balisés mis en place par la Ville et l'Eurométropole de Strasbourg.<br/>
+        Ces circuits empruntent des zones calmes, agréables et vertes comme les cours d'eau et les parcs naturels.
+      </p>
+    </div>
+
+      <div id="map" class="vitaboucles"></div>
+      <div id="container"></div>
+    </main>
+
+  </div>
+
+  <script src="Scripts/config.js"></script>
+  <script src="Scripts/ajax.js"></script>
+  <script src="Scripts/scriptMaps.js"></script>
+  <script src="Scripts/catsouscat.js"></script>
+  <script src="Scripts/scriptSidenavFooter.js"></script>
+  <script src="Scripts/scriptVitaboucles.js"></script>
+
+</body>
+
+</html>

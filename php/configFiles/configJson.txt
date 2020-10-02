@@ -1,0 +1,15 @@
+Arbres; balades; lieux_arbres-remarquables; json; /; -30 days
+Decheteries; decheteries; lieux_decheteries; json; /; -30 days
+Mairies; administration; duree-dattente-aux-mairies-en-temps-reel; json; /; -2 minutes
+Mairies; administration; lieux_mairies-de-quartier-et-centre-administratif; json; /; -30 days
+Parcs; balades; lieux_parcs; json; /; -30 days
+Parking; deplacements; parkings; json; /; -30 days
+Parking; deplacements; occupation-parkings-temps-reel; json; /; -2 minutes
+Parking; deplacements; stationnement-payant; json; /; -30 days 
+Piscines; sport; frequentation-en-temps-reel-des-piscines; json; /; -2 minutes
+Piscines; sport; lieux_piscines; json; /; -30 days
+Trafic; deplacements; trafic-routier-eurometropole; json; /; -2 minutes
+Velo; deplacements; filaire-de-circulation; json; &refine.nature=voie+cyclable; -30 days
+Velo; deplacements; stations-velhop; json; /; -30 days
+Vitaboucles; sport; boucles_sportives_vitaboucle; geojson; /; -30 days
+WC; WC; lieux_toilettes_publiques; json; /; -30 days

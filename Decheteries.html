@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Déchèteries</title>
+  <link rel="stylesheet" href="Leaflet/leaflet.css"/>
+  <link rel="stylesheet" href="Stylesheets/font-style.css" />
+  <link rel="stylesheet" href="Stylesheets/styleMain.css" />
+  <script src="Leaflet/leaflet.js"> </script>
+
+</head>
+
+<body>
+  <div id="root">
+    <header class="decheteries">
+      <h1>Déchèteries de Strasbourg</h1>
+      <h2 id="upDate">&nbsp</h2>
+      <p id="ago">Inspection des conteneurs en cours... Un peu de patience :)</p>
+      <p id="status"></p>
+    </header>
+
+    <main>
+      <div id="exceptions"><h2>Horaires exceptionnels</h2></div>
+      <div id="map"></div>
+      <form>
+        <p>
+          <input id="searched" class="decheteries" type="text" placeholder="Chercher une déchèterie..."/>
+        </p>
+      </form>
+
+      <div id="container"></div>
+    </main>
+
+  </div>
+
+  <script src="Scripts/config.js"></script>
+  <script src="Scripts/ajax.js"></script>
+  <script src="Scripts/scriptMaps.js"></script>
+  <script src="Scripts/catsouscat.js"></script>
+  <script src="Scripts/scriptSidenavFooter.js"></script>
+  <script src="Scripts/scriptDecheteries.js"></script>
+
+</body>
+
+</html>

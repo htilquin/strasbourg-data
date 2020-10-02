@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head class="admin">
+    <meta charset="utf-8" />
+    <title>Administration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../Stylesheets/font-style.css" />
+    <link rel="stylesheet" href="../Stylesheets/styleMain.css" />
+</head>
+
+<body  class="slimheader nofooter">
+    <div id="root">
+        <header class="admin">
+            <h1 id="pageTitle">Administration du site</h1>
+            <div class="linkDiv left">
+                <a href="../Accueil.html">
+                    <img class="linkIcon home" src="../Images/Icons/cathedraleSIIwhite.png" />
+                </a>
+            </div>
+        </header>
+        <main>
+
+            <div class="cardWelcome">
+                <p>
+                    Bienvenue sur la page d'administration de cette application web !
+                </p>
+            </div>
+
+            <form>
+                <p>
+                  <input id="searched" class="admin" type="text" placeholder="Chercher une page..."/>
+                </p>
+            </form>
+
+            <div id="container" class="admin"></div>
+
+        </main>
+    </div>
+    <script src="../Scripts/config.js"></script>
+    <script src="../Scripts/ajax.js"></script>
+    <script src="scriptAdmin.js"></script>
+
+</body>
+
+</html>

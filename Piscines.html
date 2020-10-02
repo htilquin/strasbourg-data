@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Piscines</title>
+  <link rel="stylesheet" href="Leaflet/leaflet.css"/>
+  <link rel="stylesheet" href="Stylesheets/font-style.css" />
+  <link rel="stylesheet" href="Stylesheets/styleMain.css" />
+  <script src="Leaflet/leaflet.js"> </script>
+</head>
+
+<body>
+  <div id="root">
+    <header class="sport">
+      <h1>Piscines et occupation</h1>
+      <h2 id="upDate">&nbsp</h2>
+      <p id="ago">Comptage du nombre de personnes dans le petit bassin en cours...</p>
+      <p id="status"></p>
+    </header>
+
+    <main>
+      <div class="cardWelcome">
+        <p>Les horaires indiqués constituent les heures d'ouverture de l'établissement au grand public.<br/>
+        Selon les conditions de fréquentation, l'évacuation des bassins se fait 20 à 30 minutes avant la fermeture de l'établissement.<br/>
+        Les caisses sont fermées 45 minutes avant la fermeture de l'établissement.<br/>
+        La fréquentation est donnée à titre indicatif et dans la configuration où tous les bassins sont ouverts.</p>
+      </div>
+      <div id="map" class="exceptionsPopUp"></div>
+      <form>
+        <p>
+          <input id="searched" class="sport" type="text" placeholder="Chercher une piscine..."/>
+        </p>
+      </form>
+
+      <div id="container"></div>
+    </main>
+
+  </div>
+
+  <script src="Scripts/config.js"></script>
+  <script src="Scripts/ajax.js"></script>
+  <script src="Scripts/scriptMaps.js"></script>
+  <script src="Scripts/catsouscat.js"></script>
+  <script src="Scripts/scriptSidenavFooter.js"></script>
+  <script src="Scripts/scriptPiscines.js"></script>
+
+</body>
+
+</html>

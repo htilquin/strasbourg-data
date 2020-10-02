@@ -1,0 +1,4 @@
+AuthName "Merci de vous authentifier"
+AuthType Basic
+AuthUserFile "/opt/lampp/htdocs/strasbourg-data/.htpasswd"
+Require valid-user

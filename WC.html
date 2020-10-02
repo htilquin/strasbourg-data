@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toilettes Publiques</title>
+    <link rel="stylesheet" href="Leaflet/leaflet.css"/>
+    <link rel="stylesheet" href="Stylesheets/font-style.css" />
+    <link rel="stylesheet" href="Stylesheets/styleMain.css" />
+    <script src="Leaflet/leaflet.js"> </script>
+</head>
+
+<body>
+    <div id="root">
+        <header class="WC">
+            <h1>Toilettes Publiques à Strasbourg</h1>
+            <h2 id="upDate">&nbsp</h2>
+            <p id="ago">Nettoyage des toilettes en cours... Un peu de patience :)</p>
+            <p id="status"></p>
+        </header>
+
+        <main>
+            <div id="map"></div>
+            <div id="container"></div>
+        </main>
+
+    </div>
+
+    <script src="Scripts/config.js"></script>
+    <script src="Scripts/ajax.js"></script>
+    <script src="Scripts/scriptMaps.js"></script>
+    <script src="Scripts/catsouscat.js"></script>
+    <script src="Scripts/scriptSidenavFooter.js"></script>
+    <script src="Scripts/scriptWC.js"></script>
+
+</body>
+
+</html>
