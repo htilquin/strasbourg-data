@@ -1,5 +1,5 @@
-const UrlVitaboucles = 'boucles_sportives_vitaboucle.geojson';
-const pageName = 'Vitaboucles';
+const UrlVitaboucles = 'boucles_sportives_vitaboucle&format=geojson';
+//const pageName = 'Vitaboucles';
 const siteVitaboucles = 'https://www.strasbourg.eu/parcours-vitaboucle';
 var zoom = 12;
 var lat = 48.58;
@@ -7,7 +7,9 @@ var lng = 7.75;
 
 var geojsonLayer;
 
-ajaxGetState(pageName, isReady, true);
+var base_url = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlVitaboucles + "&q=&lang=fr%2F&timezone=Europe%2FBerlin";
+
+ajaxGetJson(base_url, ToGeojson, geojson = true);
 
 var map = L.map('map').setView([lat, lng], zoom);
 mapCreation(map);
@@ -42,8 +44,14 @@ legend.onAdd = function () {
 legend.addTo(map);
 clickLegend();
 
-function isReady() {
-  ajaxGet(UrlVitaboucles, vitabouclesMap);
+function ToGeojson(data) {
+  dataJ = JSON.parse(data);
+
+  dataJ.features.forEach(boucle => {
+    boucle.geometry = boucle.properties.geo_shape;
+  });
+
+  vitabouclesMap(dataJ);
 }
 
 /**

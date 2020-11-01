@@ -91,3 +91,5 @@ const aRef = document.createElement('a');
 aRef.setAttribute('href', 'https://data.strasbourg.eu/');
 aRef.textContent = "Open Data Strasbourg.eu";
 pCredit.appendChild(aRef);
+
+pCredit.textContent = pCredit.textContent + " - Site en cours d'adaptation pour partage GitHub.";

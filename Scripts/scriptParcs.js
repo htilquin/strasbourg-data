@@ -1,18 +1,23 @@
-const UrlPark = 'lieux_parcs.json';
-const pageName = 'Parcs';
+const UrlPark = 'lieux_parcs';
+//const pageName = 'Parcs';
 var zoom = 13;
 var lat = 48.5796;
 var lng = 7.7616;
 
-ajaxGetState(pageName, isReady);
+var base_url = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlPark + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var url_nhits = base_url + no_hits;
+
+//ajaxGetState(pageName, isReady);
+ajaxGetnHits(url_nhits, isReady);
 searchedFunction();
 
 var map = L.map('map').setView([lat, lng], zoom);
 mapCreation(map);
 var markerGroup = L.layerGroup().addTo(map);
 
-function isReady() {
-    ajaxGet(UrlPark, parkMap);
+function isReady(n_hits) {
+    var url_page = base_url + n_hits;
+    ajaxGetJson(url_page, parkMap);
 }
 
 /**
@@ -47,7 +52,16 @@ function parkMap(data) {
         const parkName = document.createElement('h1');
         parkName.setAttribute('class', 'walkName');
         parkName.setAttribute('data-ref', park.recordid);
-        parkName.textContent = park.fields.name;
+
+        if (park.fields.name.includes("fr_FR")) {
+            const names = '{"names": {' + park.fields.name + '"} }';
+            const nameJ = JSON.parse(names);
+            parkNameText = nameJ.names.fr_FR;
+        } else {
+           parkNameText = park.fields.name;
+        }
+
+        parkName.textContent = parkNameText;
         divTitle.appendChild(parkName);
 
         getInfoPark(park, divTitle);
@@ -55,15 +69,15 @@ function parkMap(data) {
         var parkMarker = L.marker(park.fields.point_geo,
             {
                 icon: parkIcon,
-                title: park.fields.name,
-                alt: park.fields.name,
+                title: parkNameText,
+                alt: parkNameText,
                 ref: park.recordid
             });
         parkMarker.addTo(markerGroup);
 
         ({ address1, address2 } = parseAddress(park.fields.address));
 
-        parkMarker.bindPopup(`<div class="fieldName">${park.fields.name}</div>
+        parkMarker.bindPopup(`<div class="fieldName">${parkNameText}</div>
                 <span class="fieldAddress">${address1}<br/>${address2}</span>`,
             { closeButton: false });
         clickMarker(parkMarker, park);

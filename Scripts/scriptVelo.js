@@ -1,18 +1,29 @@
-const UrlVelhop = 'stations-velhop.json';
-const UrlBikeway = 'filaire-de-circulation.json';
-const pageName = 'Velo';
+const UrlVelhop = 'stations-velhop';
+const UrlBikeway = 'filaire-de-circulation&refine.nature=voie+cyclable';
 var zoom = 13;
 var lat = 48.581;
 var lng = 7.748;
 
-ajaxGetState(pageName, isReady);
+var baseUrlVelhop = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlVelhop + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhitsVelhop = baseUrlVelhop + noHits;
+
+var baseUrlWays = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlBikeway + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhitsWays = baseUrlWays + noHits;
+
+ajaxGetnHits(urlNhitsVelhop, isReadyVelhop);
+ajaxGetnHits(urlNhitsWays, isReadyWays);
 
 var map = L.map('map').setView([lat, lng], zoom);
 mapCreation(map);
 
-function isReady() {
-    ajaxGet(UrlBikeway, bikewayMap);
-    ajaxGet(UrlVelhop, velhopMap);
+function isReadyVelhop(nHits) {
+    var urlPage = baseUrlVelhop + nHits;
+    ajaxGetJson(urlPage, velhopMap);
+}
+
+function isReadyWays(nHits) {
+    var urlPage = baseUrlWays + nHits;
+    ajaxGetJson(urlPage, bikewayMap);
 }
 
 /**

@@ -1,6 +1,8 @@
 const container = document.getElementById('container');
 document.title = document.title + ' - ' + websiteName;
 var prePath;
+var nHits;
+const noHits = 0;
 var demoMode = true;
 
 /**
@@ -15,6 +17,37 @@ window.onload = function () {
     link.href = (admin ? '../' + favicon : favicon);
     head.appendChild(link);
 };
+
+
+/**
+ * Calls the url to get the nhits 
+ * 
+ * @param {string} url - url to API JSON file
+ * @param {function} callback - function to execute
+ */
+function ajaxGetnHits(url, callback) {
+    // Création d'une requête HTTP
+    var req = new XMLHttpRequest();
+    // Requête HTTP GET asynchrone vers le fichier (3r param=true)
+    req.open("GET", url, true);
+    //Gestion de l'évènement indiquant la fin de la requête
+    req.addEventListener("load", function(){
+        if (req.status >= 200 && req.status < 400) {
+            // Affiche la réponse reçue pour la requête
+            nHits = JSON.parse(this.response).nhits;
+            callback(nHits);
+        } else {
+            console.error(req.status + " " + req.statusText)
+        }
+    });
+    req.addEventListener("error", function() {
+        //La requête n'a pas réussi à atteindre le serveur
+        console.log("Erreur réseau");
+    });
+    // Envoi de la requete
+    req.send(null);
+}
+
 
 /**
  * Parse response from pageUpdate.php to :
@@ -64,7 +97,7 @@ function parseEcho(data, addDate = false) {
         if (addDate) {
             displayDate(new Date());
         }
-
+        
 /*     } else {
         const footer = document.getElementsByTagName('footer')[0];
         const visits = document.createElement('p');
@@ -78,11 +111,11 @@ function parseEcho(data, addDate = false) {
     } else {
         const footer = document.getElementsByTagName('footer')[0];
         const modifs = document.createElement('p');
-        modifs.textContent = ` - Site modifié pour partage GitHub.`;
+        modifs.textContent = ` - Site en cours d'adaptation pour partage GitHub.`;
         footer.appendChild(modifs);
 
     }
-    prePath = data[1];
+    prePath = data[1]; 
 }
 
 /**
@@ -180,6 +213,35 @@ function ajaxGet(path, callback, isJSON = true) {
         console.error(`Erreur réseau avec l'URL ${path}`);
     };
     request.send();
+}
+
+/**
+ * Gets the data with all the nhits
+ * @param {string} url - url adress with nhits
+ * @param {function} callback - function that parses the JSON data
+ */
+function ajaxGetJson(url, callback, geojson = false) {
+    var req = new XMLHttpRequest();
+    req.open("GET", url);
+    req.addEventListener("load", function(){
+        if (req.status >= 200 && req.status < 400) {
+            // Affiche la réponse reçue pour la requête
+            if (geojson) {
+                callback(this.response);
+            } else {
+                data = JSON.parse(this.response)
+                callback(data.records);
+            }
+        } else {
+            console.error(req.status + " " + req.statusText)
+        }
+    });
+    req.addEventListener("error", function() {
+        //La requête n'a pas réussi à atteindre le serveur
+        console.log("Erreur réseau");
+    });
+    // Envoi de la requete
+    req.send(null);
 }
 
 /**

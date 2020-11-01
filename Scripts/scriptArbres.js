@@ -1,18 +1,23 @@
-const UrlTree = 'lieux_arbres-remarquables.json';
-const pageName = 'Arbres';
+const UrlTree = 'lieux_arbres-remarquables';
+//const pageName = 'Arbres';
 var zoom = 13;
 var lat = 48.5796;
 var lng = 7.7616;
+
+var base_url = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlTree + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var url_nhits = base_url + no_hits;
 
 var map = L.map('map').setView([lat, lng], zoom);
 mapCreation(map);
 var markerGroup = L.layerGroup().addTo(map);
 
-ajaxGetState(pageName, isReady);
+//ajaxGetState(pageName, isReady);
+ajaxGetnHits(url_nhits, isReady);
 searchedFunction();
 
-function isReady() {
-    ajaxGet(UrlTree, treeMap);
+function isReady(n_hits) {
+    var url_page = base_url + n_hits;
+    ajaxGetJson(url_page, treeMap);
 }
 
 /**

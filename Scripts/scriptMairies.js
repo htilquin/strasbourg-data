@@ -1,6 +1,6 @@
-const UrlWait = 'duree-dattente-aux-mairies-en-temps-reel.json';
-const UrlLoc = 'lieux_mairies-de-quartier-et-centre-administratif.json';
-const pageName = 'Mairies';
+const UrlWait = 'duree-dattente-aux-mairies-en-temps-reel';
+const UrlLoc = 'lieux_mairies-de-quartier-et-centre-administratif';
+//const pageName = 'Mairies';
 var zoom = 13;
 var lat = 48.5752;
 var lng = 7.7490;
@@ -8,7 +8,14 @@ var data1, data2;
 var data1ready = false;
 var data2ready = false;
 
-ajaxGetState(pageName, isReady);
+var baseUrlLoc = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlLoc + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhitsLoc = baseUrlLoc + noHits;
+
+var baseUrlWait = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlWait + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhitsWait = baseUrlWait + noHits;
+
+ajaxGetnHits(urlNhitsLoc, isReadyLoc);
+ajaxGetnHits(urlNhitsWait, isReadyWait);
 searchedFunction();
 
 var map = L.map('map').setView([lat, lng], zoom);
@@ -51,9 +58,14 @@ legend.onAdd = function () {
 legend.addTo(map);
 clickLegend();
 
-function isReady() {
-    ajaxGet(UrlWait, cardReady);
-    ajaxGet(UrlLoc, mapReady);
+function isReadyLoc(nHits) {
+    var urlPage = baseUrlLoc + nHits;
+    ajaxGetJson(urlPage, mapReady);
+}
+
+function isReadyWait(nHits) {
+    var urlPage = baseUrlWait + nHits;
+    ajaxGetJson(urlPage, cardReady);
 }
 
 function cardReady(data) {

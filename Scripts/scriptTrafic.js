@@ -1,10 +1,13 @@
-const UrlTrafic = 'trafic-routier-eurometropole.json';
-const pageName = 'Trafic';
+const UrlTrafic = 'trafic-routier-eurometropole';
+//const pageName = 'Trafic';
 var zoom = 13;
 var lat = 48.581;
 var lng = 7.748;
 
-ajaxGetState(pageName, isReady);
+var baseUrl = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlTrafic + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhits = baseUrl + noHits;
+
+ajaxGetnHits(urlNhits, isReady);
 
 var map = L.map('map').setView([lat, lng], zoom);
 mapCreation(map);
@@ -21,8 +24,9 @@ legend.onAdd = function () {
 legend.addTo(map);
 clickLegend();
 
-function isReady() {
-    ajaxGet(UrlTrafic, traficMap);
+function isReady(nHits){
+    var url_page = baseUrl + nHits;
+    ajaxGetJson(url_page, traficMap);
 }
 
 /**

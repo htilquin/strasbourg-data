@@ -1,10 +1,14 @@
-const UrlWaste = 'lieux_decheteries.json';
-const pageName = 'Decheteries';
+const UrlWaste = 'lieux_decheteries';
+//const pageName = 'Decheteries';
 var zoom = 12;
 var lat = 48.5796;
 var lng = 7.75;
 
-ajaxGetState(pageName, isReady);
+var base_url = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlWaste + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var url_nhits = base_url + no_hits;
+
+//ajaxGetState(pageName, isReady);
+ajaxGetnHits(url_nhits, isReady);
 searchedFunction();
 
 var map = L.map('map').setView([lat, lng], zoom);
@@ -45,8 +49,9 @@ info.update = function (data, horaires, matHours) {
 };
 info.addTo(map);
 
-function isReady() {
-    ajaxGet(UrlWaste, wasteCenterCard);
+function isReady(n_hits) {
+    var url_page = base_url + n_hits;
+    ajaxGetJson(url_page, wasteCenterCard);
 }
 
 /**

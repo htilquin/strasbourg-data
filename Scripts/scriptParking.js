@@ -1,6 +1,6 @@
-const UrlLoc = 'parkings.json';
-const UrlFreq = 'occupation-parkings-temps-reel.json';
-const UrlZone = 'stationnement-payant.json';
+const UrlLoc = 'parkings';
+const UrlFreq = 'occupation-parkings-temps-reel';
+const UrlZone = 'stationnement-payant';
 const pageName = 'Parking';
 var zoom = 14;
 var lat = 48.581;
@@ -9,7 +9,19 @@ var data1, data2;
 var data1ready = false;
 var data2ready = false;
 
-ajaxGetState(pageName, isReady);
+var baseUrlLoc = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlLoc + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhitsLoc = baseUrlLoc + noHits;
+
+var baseUrlFreq = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlFreq + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhitsFreq = baseUrlFreq + noHits;
+
+var baseUrlZone = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlZone + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhitsZone = baseUrlZone + noHits;
+
+ajaxGetnHits(urlNhitsLoc, isReadyLoc);
+ajaxGetnHits(urlNhitsFreq, isReadyFreq);
+ajaxGetnHits(urlNhitsZone, isReadyZone);
+
 searchedFunction();
 
 var map = L.map('map').setView([lat, lng], zoom);
@@ -89,10 +101,19 @@ legend.onAdd = function () {
 legend.addTo(map);
 clickLegend();
 
-function isReady() {
-    ajaxGet(UrlFreq, cardReady);
-    ajaxGet(UrlZone, zoneMap);
-    ajaxGet(UrlLoc, mapReady);
+function isReadyLoc(nHits) {
+    var urlPage = baseUrlLoc + nHits;
+    ajaxGetJson(urlPage, mapReady);
+}
+
+function isReadyFreq(nHits) {
+    var urlPage = baseUrlFreq + nHits;
+    ajaxGetJson(urlPage, cardReady);
+}
+
+function isReadyZone(nHits) {
+    var urlPage = baseUrlZone + nHits;
+    ajaxGetJson(urlPage, zoneMap);
 }
 
 function cardReady(data) {
@@ -144,7 +165,6 @@ function parkingCard(data) {
         getAttendanceParking(parking, card);
     });
 }
-
 
 /**
  * Gets the details of attendance for the *parking* entity and

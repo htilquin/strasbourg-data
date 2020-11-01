@@ -1,6 +1,6 @@
-const UrlFreq = 'frequentation-en-temps-reel-des-piscines.json';
-const UrlLoc = 'lieux_piscines.json';
-const pageName = 'Piscines';
+const UrlFreq = 'frequentation-en-temps-reel-des-piscines';
+const UrlLoc = 'lieux_piscines';
+//const pageName = 'Piscines';
 var zoom = 12;
 var lat = 48.5796;
 var lng = 7.7380;
@@ -8,7 +8,14 @@ var data1, data2;
 var data1ready = false;
 var data2ready = false;
 
-ajaxGetState(pageName, isReady);
+var baseUrlLoc = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlLoc + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhitsLoc = baseUrlLoc + noHits;
+
+var baseUrlFreq = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlFreq + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhitsFreq = baseUrlFreq + noHits;
+
+ajaxGetnHits(urlNhitsLoc, isReadyLoc);
+ajaxGetnHits(urlNhitsFreq, isReadyFreq);
 searchedFunction();
 
 var map = L.map('map').setView([lat, lng], zoom);
@@ -51,9 +58,14 @@ legend.onAdd = function () {
 legend.addTo(map);
 clickLegend();
 
-function isReady() {
-    ajaxGet(UrlFreq, cardReady);
-    ajaxGet(UrlLoc, mapReady);
+function isReadyLoc(nHits) {
+    var urlPage = baseUrlLoc + nHits;
+    ajaxGetJson(urlPage, mapReady);
+}
+
+function isReadyFreq(nHits) {
+    var urlPage = baseUrlFreq + nHits;
+    ajaxGetJson(urlPage, cardReady);
 }
 
 function cardReady(data) {

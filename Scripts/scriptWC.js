@@ -1,10 +1,14 @@
-const UrlWC = 'lieux_toilettes_publiques.json';
-const pageName = 'WC';
+const UrlWC = 'lieux_toilettes_publiques';
+//const pageName = 'WC';
 var zoom = 13;
 var lat = 48.5796;
 var lng = 7.77;
 
-ajaxGetState(pageName, isReady);
+var base_url = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlWC + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var url_nhits = base_url + no_hits
+
+//ajaxGetState(pageName, isReady);
+ajaxGetnHits(url_nhits, isReady)
 
 var map = L.map('map').setView([lat, lng], zoom);
 var texteSII = "Toilettes non publiques accessibles aux horaires d'ouverture de l'agence !";
@@ -37,8 +41,9 @@ info.update = function (data, services, schedule, matHours) {
 };
 info.addTo(map);
 
-function isReady() {
-    ajaxGet(UrlWC, locWC);
+function isReady(n_hits) {
+    var url_page = base_url + n_hits;
+    ajaxGetJson(url_page, locWC);
 }
 
 /**
