@@ -4,19 +4,19 @@ var zoom = 13;
 var lat = 48.5796;
 var lng = 7.7616;
 
-var base_url = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlTree + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
-var url_nhits = base_url + no_hits;
+var baseUrl = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlTree + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhits = baseUrl + noHits;
 
 var map = L.map('map').setView([lat, lng], zoom);
 mapCreation(map);
 var markerGroup = L.layerGroup().addTo(map);
 
 //ajaxGetState(pageName, isReady);
-ajaxGetnHits(url_nhits, isReady);
+ajaxGetnHits(urlNhits, isReady);
 searchedFunction();
 
-function isReady(n_hits) {
-    var url_page = base_url + n_hits;
+function isReady(nHits) {
+    var url_page = baseUrl + nHits;
     ajaxGetJson(url_page, treeMap);
 }
 

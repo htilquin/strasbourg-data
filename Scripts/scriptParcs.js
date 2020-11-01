@@ -4,20 +4,20 @@ var zoom = 13;
 var lat = 48.5796;
 var lng = 7.7616;
 
-var base_url = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlPark + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
-var url_nhits = base_url + no_hits;
+var baseUrl = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlPark + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhits = baseUrl + noHits;
 
 //ajaxGetState(pageName, isReady);
-ajaxGetnHits(url_nhits, isReady);
+ajaxGetnHits(urlNhits, isReady);
 searchedFunction();
 
 var map = L.map('map').setView([lat, lng], zoom);
 mapCreation(map);
 var markerGroup = L.layerGroup().addTo(map);
 
-function isReady(n_hits) {
-    var url_page = base_url + n_hits;
-    ajaxGetJson(url_page, parkMap);
+function isReady(nHits) {
+    var urlPage = baseUrl + nHits;
+    ajaxGetJson(urlPage, parkMap);
 }
 
 /**

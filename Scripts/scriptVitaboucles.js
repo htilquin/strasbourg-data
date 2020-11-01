@@ -7,9 +7,9 @@ var lng = 7.75;
 
 var geojsonLayer;
 
-var base_url = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlVitaboucles + "&q=&lang=fr%2F&timezone=Europe%2FBerlin";
+var baseUrl = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlVitaboucles + "&q=&lang=fr%2F&timezone=Europe%2FBerlin";
 
-ajaxGetJson(base_url, ToGeojson, geojson = true);
+ajaxGetJson(baseUrl, ToGeojson, geojson = true);
 
 var map = L.map('map').setView([lat, lng], zoom);
 mapCreation(map);

@@ -4,11 +4,11 @@ var zoom = 12;
 var lat = 48.5796;
 var lng = 7.75;
 
-var base_url = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlWaste + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
-var url_nhits = base_url + no_hits;
+var baseUrl = "https://data.strasbourg.eu/api/records/1.0/search/?dataset="+ UrlWaste + "&q=&lang=fr%2F&timezone=Europe%2FBerlin&rows=";
+var urlNhits = baseUrl + noHits;
 
 //ajaxGetState(pageName, isReady);
-ajaxGetnHits(url_nhits, isReady);
+ajaxGetnHits(urlNhits, isReady);
 searchedFunction();
 
 var map = L.map('map').setView([lat, lng], zoom);
@@ -49,9 +49,9 @@ info.update = function (data, horaires, matHours) {
 };
 info.addTo(map);
 
-function isReady(n_hits) {
-    var url_page = base_url + n_hits;
-    ajaxGetJson(url_page, wasteCenterCard);
+function isReady(nHits) {
+    var urlPage = baseUrl + nHits;
+    ajaxGetJson(urlPage, wasteCenterCard);
 }
 
 /**

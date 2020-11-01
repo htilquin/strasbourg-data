@@ -25,8 +25,8 @@ legend.addTo(map);
 clickLegend();
 
 function isReady(nHits){
-    var url_page = baseUrl + nHits;
-    ajaxGetJson(url_page, traficMap);
+    var urlPage = baseUrl + nHits;
+    ajaxGetJson(urlPage, traficMap);
 }
 
 /**
